@@ -2,6 +2,18 @@
 const join = require('path').join;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+
+function getCSSConfig(env) {
+  if (env === 'production') {
+    return ExtractTextWebpackPlugin.extract({
+      fallback: 'style-loader',
+      use: ['css-loader', 'sass-loader'],
+      publicPath: '/dist',
+    });
+  }
+  return ['style-loader', 'css-loader', 'sass-loader'];
+}
 
 module.exports = {
   entry: './src/app.jsx',
@@ -20,11 +32,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-          publicPath: '/dist',
-        }),
+        use: getCSSConfig(process.env.NODE_ENV),
       }, // use | loader | loaders 
     ],
   },
@@ -35,6 +43,7 @@ module.exports = {
     port: 3000,
     stats: 'errors-only',
     open: true,
+    hot: true,
   },
 
   plugins: [
@@ -48,8 +57,10 @@ module.exports = {
     }),
     new ExtractTextWebpackPlugin({
       filename: 'app.css',
-      disable: false,
+      disable: process.env.NODE_ENV !== 'production',
       allChunks: true,
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
   ],
 };
