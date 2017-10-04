@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './src/app.jsx',
   output: {
     path: join(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -12,6 +12,12 @@ module.exports = {
 
   module: {
     rules: [
+
+      {
+        test: /\.js$|\.jsx$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
       {
         test: /\.scss$/,
         use: ExtractTextWebpackPlugin.extract({
