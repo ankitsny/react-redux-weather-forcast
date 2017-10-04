@@ -23,6 +23,14 @@ module.exports = {
     ],
   },
 
+  devServer: {
+    contentBase: join(__dirname, 'dist'),
+    compress: true,
+    port: 3000,
+    stats: 'errors-only',
+    open: true,
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Hello World1',
