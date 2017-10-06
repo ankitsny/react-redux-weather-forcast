@@ -9,7 +9,7 @@ function getCSSConfig(env) {
     return ExtractTextWebpackPlugin.extract({
       fallback: 'style-loader',
       use: ['css-loader', 'sass-loader'],
-      publicPath: '/dist',
+      publicPath: '/dist/',
     });
   }
   return ['style-loader', 'css-loader', 'sass-loader'];
@@ -26,14 +26,29 @@ module.exports = {
     rules: [
 
       {
-        test: /\.js$|\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
         test: /\.scss$/,
         use: getCSSConfig(process.env.NODE_ENV),
-      }, // use | loader | loaders 
+      }, // use | loader | loaders
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          'file-loader?name=[name].[ext]&outputPath=assets/&publicPath=/',
+          'image-webpack-loader',
+        ],
+      },
+      {
+        test: /\.(woff2?|svg)$/,
+        loader: 'url-loader?limit=10000&name=fonts/[name].[ext]',
+      },
+      {
+        test: /\.(ttf|eot)$/,
+        loader: 'url-loader?name=fonts/[name].[ext]',
+      },
     ],
   },
 
