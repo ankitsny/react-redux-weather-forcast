@@ -6,6 +6,7 @@
         "jasmine": true
     },
     "rules": {
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "jsx-a11y/no-noninteractive-element-to-interactive-role": "warn"       
     }
 }

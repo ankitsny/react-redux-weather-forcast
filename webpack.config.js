@@ -16,7 +16,7 @@ function getCSSConfig(env) {
 }
 
 module.exports = {
-  entry: './src/app.jsx',
+  entry: './src/index.jsx',
   output: {
     path: join(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -50,6 +50,10 @@ module.exports = {
         loader: 'url-loader?name=fonts/[name].[ext]',
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
 
   devServer: {
