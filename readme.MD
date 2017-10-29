@@ -1,1 +1,1 @@
-# React boilerplate | Webpack 2+
+# React Redux app to diaplay weather forcast
