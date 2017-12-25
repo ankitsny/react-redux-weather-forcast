@@ -3,7 +3,7 @@ import React from 'react';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { message: "Hello World" };
+    this.state = { message: 'Hello World' };
   }
 
   render() {
@@ -16,4 +16,3 @@ class App extends React.Component {
 }
 
 export default App;
-

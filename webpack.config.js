@@ -15,6 +15,7 @@ function getCSSConfig(env) {
   return ['style-loader', 'css-loader', 'sass-loader'];
 }
 
+
 module.exports = {
   entry: './src/index.jsx',
   output: {
